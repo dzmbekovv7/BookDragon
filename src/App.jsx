@@ -12,6 +12,7 @@ import Books from './pages/Books';
 import Contact from './pages/Contact';
 import Privacy from './pages/Privacy';
 import AshleyArticlesPage from './pages/Articles';
+import AshleyArticleDetailPage from './pages/ArticlesDetailPage';
 import AnimatedPage from './components/FadeTransition';
 import Testimonials from './pages/Reviews';
 const loadingMessages = [
@@ -63,10 +64,13 @@ function App() {
           <Route path="/about" element={<AnimatedPage><About /></AnimatedPage>} />
           <Route path="/introduction" element={<AnimatedPage><Introduction /></AnimatedPage>} />
           <Route path="/books" element={<AnimatedPage><Books /></AnimatedPage>} />
+
           <Route path="/contact" element={<AnimatedPage><Contact /></AnimatedPage>} />
           <Route path="/privacy" element={<AnimatedPage><Privacy /></AnimatedPage>} />
           <Route path='/reviews' element={<AnimatedPage><Testimonials></Testimonials></AnimatedPage>}></Route>
           <Route path="/articles" element={<AnimatedPage><AshleyArticlesPage /></AnimatedPage>} />
+          <Route path="/articles/:slug"  element={<AnimatedPage><AshleyArticleDetailPage /></AnimatedPage>} />
+
         </Routes>
       </AnimatePresence>
       <Footer />

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { supabase } from '../supabase'
 import { Search, Flame, Star, Clock } from 'lucide-react'
 import Loading from '../components/Loading'  // импорт компонента Loading
+import { Link } from 'react-router-dom'
 
 const AshleyArticlesPage = () => {
   const [articles, setArticles] = useState([])
@@ -33,19 +34,22 @@ const AshleyArticlesPage = () => {
   const handleShowMore = () => {
     setVisibleCount(prev => prev + 9)
   }
-
+  const slugify = (text) =>
+    text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "");
+  
   const filteredArticles = articles
     .filter(article => article.title.toLowerCase().includes(searchTerm.toLowerCase()))
     .sort((a, b) => {
       if (filter === 'newest') {
         return new Date(b.published_date) - new Date(a.published_date)
+      } else if (filter === 'oldest') {
+        return new Date(a.published_date) - new Date(b.published_date)
       } else if (filter === 'popular') {
         return b.reading_time - a.reading_time
       } else {
         return 0
       }
     })
-
   return (
     <div className="bg-gradient-to-b via-white to-blue-50 min-h-screen pb-16">
       {/* Animated Header */}
@@ -58,56 +62,60 @@ const AshleyArticlesPage = () => {
 
       <div className="max-w-7xl mx-auto px-4 mt-16">
         {/* Search & Filters */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-10">
-          <div className="relative w-full md:w-1/2 mx-auto group transition duration-300">
-            <div className="flex items-center w-full bg-white rounded-full shadow-md ring-1 ring-blue-200 focus-within:ring-2 focus-within:ring-blue-500 px-5 py-3 transition-all duration-300">
-              <Search className="text-blue-500 mr-3" />
-              <input
-                type="text"
-                placeholder="Search articles..."
-                value={searchTerm}
-                onChange={e => setSearchTerm(e.target.value)}
-                className="flex-grow bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none text-sm sm:text-base"
-              />
-              {searchTerm && (
-                <button
-                  onClick={() => setSearchTerm('')}
-                  className="text-gray-400 hover:text-red-500 transition"
-                  aria-label="Clear search"
-                >
-                  ✕
-                </button>
-              )}
-            </div>
-          </div>
+        {/* Search & Filters */}
+<div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-10">
+  {/* Search bar */}
+  <div className="relative w-full md:w-1/2 mx-auto group transition duration-300">
+    <div className="flex items-center w-full bg-white rounded-full shadow-md ring-1 ring-blue-200 focus-within:ring-2 focus-within:ring-blue-500 px-5 py-3 transition-all duration-300">
+      <Search className="text-blue-500 mr-3" />
+      <input
+        type="text"
+        placeholder="Search articles..."
+        value={searchTerm}
+        onChange={e => setSearchTerm(e.target.value)}
+        className="flex-grow bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none text-sm sm:text-base"
+      />
+      {searchTerm && (
+        <button
+          onClick={() => setSearchTerm('')}
+          className="text-gray-400 hover:text-red-500 transition"
+          aria-label="Clear search"
+        >
+          ✕
+        </button>
+      )}
+    </div>
+  </div>
 
-          {/* <div className="flex gap-3 flex-wrap justify-center">
-            <button
-              onClick={() => setFilter('newest')}
-              className={`px-4 py-2 rounded-full transition font-medium flex items-center gap-2 ${
-                filter === 'newest' ? 'bg-blue-600 text-white' : 'bg-white text-blue-700 border border-blue-200'
-              }`}
-            >
-              <Clock size={18} /> Newest
-            </button>
-            <button
-              onClick={() => setFilter('popular')}
-              className={`px-4 py-2 rounded-full transition font-medium flex items-center gap-2 ${
-                filter === 'popular' ? 'bg-blue-600 text-white' : 'bg-white text-blue-700 border border-blue-200'
-              }`}
-            >
-              <Flame size={18} /> Popular
-            </button>
-            <button
-              onClick={() => setFilter('favorites')}
-              className={`px-4 py-2 rounded-full transition font-medium flex items-center gap-2 ${
-                filter === 'favorites' ? 'bg-blue-600 text-white' : 'bg-white text-blue-700 border border-blue-200'
-              }`}
-            >
-              <Star size={18} /> My Favorites
-            </button>
-          </div> */}
-        </div>
+  {/* Filter buttons */}
+  <div className="flex gap-3 flex-wrap justify-center">
+    <button
+      onClick={() => setFilter('newest')}
+      className={`px-4 py-2 rounded-full transition font-medium flex items-center gap-2 ${
+        filter === 'newest' ? 'bg-blue-600 text-white' : 'bg-white text-blue-700 border border-blue-200'
+      }`}
+    >
+      <Clock size={18} /> Newest
+    </button>
+    <button
+      onClick={() => setFilter('oldest')}
+      className={`px-4 py-2 rounded-full transition font-medium flex items-center gap-2 ${
+        filter === 'oldest' ? 'bg-blue-600 text-white' : 'bg-white text-blue-700 border border-blue-200'
+      }`}
+    >
+      <Clock size={18} className="transform rotate-180" /> Oldest
+    </button>
+    {/* <button
+      onClick={() => setFilter('popular')}
+      className={`px-4 py-2 rounded-full transition font-medium flex items-center gap-2 ${
+        filter === 'popular' ? 'bg-blue-600 text-white' : 'bg-white text-blue-700 border border-blue-200'
+      }`}
+    >
+      <Flame size={18} /> Popular
+    </button> */}
+  </div>
+</div>
+
 
         {/* Articles Grid / Loading / Error */}
         {loading ? (
@@ -116,7 +124,14 @@ const AshleyArticlesPage = () => {
           <p className="text-center text-red-600 ">Error: {error}</p>
         ) : (
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+
             {filteredArticles.slice(0, visibleCount).map((article, index) => (
+                          <Link
+                          key={article.id}
+                          to={`/articles/${slugify(article.title)}`}
+                          className="bg-white rounded-2xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden flex flex-col transform hover:-translate-y-1 animate-fade-in"
+                          style={{ animationDelay: `${index * 80}ms` }}
+                        >
               <div
                 key={article.id}
                 className="bg-white rounded-2xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden flex flex-col transform hover:-translate-y-1 animate-fade-in"
@@ -146,7 +161,9 @@ const AshleyArticlesPage = () => {
                   </details>
                 </div>
               </div>
+              </Link>
             ))}
+     
           </div>
         )}
 
