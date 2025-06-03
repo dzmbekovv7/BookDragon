@@ -6,7 +6,7 @@ import Loading from '../components/Loading'  // импорт компонент�
 
 const AshleyArticlesPage = () => {
   const [articles, setArticles] = useState([])
-  const [visibleCount, setVisibleCount] = useState(6)
+  const [visibleCount, setVisibleCount] = useState(9)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [searchTerm, setSearchTerm] = useState('')
@@ -31,7 +31,7 @@ const AshleyArticlesPage = () => {
   }, [])
 
   const handleShowMore = () => {
-    setVisibleCount(prev => prev + 6)
+    setVisibleCount(prev => prev + 9)
   }
 
   const filteredArticles = articles
