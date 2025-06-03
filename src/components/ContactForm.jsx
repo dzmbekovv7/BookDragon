@@ -52,7 +52,7 @@ const ContactForm = () => {
           </label>
         </div>
 
-        {/* Email */}
+      
         <div className="relative">
           <input
             type="email"
