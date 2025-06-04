@@ -299,6 +299,40 @@ const AshleyArticleDetailPage = () => {
       ))}
     </div>
   </div>
+{/* Keywords Section */}
+<div className="mt-20 border-t border-blue-200 pt-12">
+  <h2 className="text-2xl font-extrabold text-blue-800 mb-8 text-center tracking-wide uppercase">
+    Keywords
+  </h2>
+  <div className="flex flex-wrap justify-center gap-4">
+    <Link
+      to="/type/Music%20and%20Music%20Culture"
+      className="px-6 py-3 bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 font-medium rounded-full hover:from-blue-200 hover:to-blue-300 transition-all duration-300 shadow-sm hover:shadow-md"
+    >
+      Music and Music Culture
+    </Link>
+    <Link
+      to="/type/60s%20Culture%20and%20Hippie%20Spirit"
+      className="px-6 py-3 bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 font-medium rounded-full hover:from-blue-200 hover:to-blue-300 transition-all duration-300 shadow-sm hover:shadow-md"
+    >
+      60s Culture and Hippie Spirit
+    </Link>
+    <Link
+      to="/type/Personal%20Experience%20and%20Thoughts"
+      className="px-6 py-3 bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 font-medium rounded-full hover:from-blue-200 hover:to-blue-300 transition-all duration-300 shadow-sm hover:shadow-md"
+    >
+      Personal Experience and Thoughts
+    </Link>
+    <Link
+      to="/type/Alternative%20Lifestyle"
+      className="px-6 py-3 bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 font-medium rounded-full hover:from-blue-200 hover:to-blue-300 transition-all duration-300 shadow-sm hover:shadow-md"
+    >
+      Alternative Lifestyle
+    </Link>
+  </div>
+</div>
+
+
 </div>
 
     </div>

@@ -15,6 +15,8 @@ import AshleyArticlesPage from './pages/Articles';
 import AshleyArticleDetailPage from './pages/ArticlesDetailPage';
 import AnimatedPage from './components/FadeTransition';
 import Testimonials from './pages/Reviews';
+import CategoryArticlesPage from './pages/CategoryArticlesPage'
+
 const loadingMessages = [
   "Just a second... your stories are being written.",
   "Turning the pages of something magical...",
@@ -70,6 +72,8 @@ function App() {
           <Route path='/reviews' element={<AnimatedPage><Testimonials></Testimonials></AnimatedPage>}></Route>
           <Route path="/articles" element={<AnimatedPage><AshleyArticlesPage /></AnimatedPage>} />
           <Route path="/articles/:slug"  element={<AnimatedPage><AshleyArticleDetailPage /></AnimatedPage>} />
+          <Route path="/type/:typename" element={<AnimatedPage><CategoryArticlesPage /></AnimatedPage>} />
+
 
         </Routes>
       </AnimatePresence>

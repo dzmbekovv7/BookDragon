@@ -45,7 +45,7 @@ const Header = () => {
   </Link>
 
   {/* Books Dropdown */}
-  {/* <div
+  <div
     className="relative"
     onMouseEnter={() => setBookDropdownOpen(true)}
     onMouseLeave={() => setBookDropdownOpen(false)}
@@ -55,14 +55,14 @@ const Header = () => {
     </button>
 
     {bookDropdownOpen && (
-      <div className="absolute left-0 mt-2 w-44 bg-white border rounded-lg shadow-xl py-2 z-40">
-        <Link to="/books/romantic" className="block px-4 py-2 hover:bg-indigo-50">Romantic</Link>
-        <Link to="/books/mystery" className="block px-4 py-2 hover:bg-indigo-50">Mystery</Link>
-        <Link to="/books/fantasy" className="block px-4 py-2 hover:bg-indigo-50">Fantasy</Link>
-        <Link to="/books/scifi" className="block px-4 py-2 hover:bg-indigo-50">Sci-Fi</Link>
+      <div className="absolute  left-0 mt-1 w-44 bg-white border rounded-lg shadow-xl py-2 z-40">
+        <Link      to="/type/60s%20Culture%20and%20Hippie%20Spirit" className="block text-gray-700 px-4 py-2 hover:bg-indigo-50">60s Culture and Hippie Spirit</Link>
+        <Link  to="/type/Personal%20Experience%20and%20Thoughts" className="block text-gray-700 px-4 py-2 hover:bg-indigo-50">Personal Experience and Thoughts</Link>
+        <Link       to="/type/Alternative%20Lifestyle"className="block text-gray-700 px-4 py-2 hover:bg-indigo-50">Alternative Lifestyle</Link>
+        <Link      to="/type/Music%20and%20Music%20Culture" className="block text-gray-700 px-4 py-2 hover:bg-indigo-50">Music and Music Culture</Link>
       </div>
     )}
-  </div> */}
+  </div>
 
   <Link
     to="/reviews"
@@ -109,6 +109,7 @@ className="block text-gray-700 hover:text-indigo-600"
   >
     Reviews
   </Link>
+  
           <Link to="/contact" className="block text-gray-700 hover:text-indigo-600">Contact</Link>
           <Link to="/about" className="block text-gray-700 hover:text-indigo-600">About</Link>
         </div>
