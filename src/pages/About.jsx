@@ -5,11 +5,28 @@ import AboutIntro from "../components/AboutIntro";
 import QuoteSection from "../components/QuoteSection";
 import { Link } from "react-router-dom";
 const team = [
-  { name: "Alice Johnson", role: "Founder & CEO" },
-  { name: "James Park", role: "Creative Director" },
-  { name: "Sophia Kim", role: "Editor-in-Chief" },
-  { name: "Leo Martins", role: "Community Manager" },
+  {
+    name: "Olivia Reynolds",
+    role: "Lifestyle Blogger",
+    img: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+  },
+  {
+    name: "Aiden Brooks",
+    role: "Travel Writer",
+    img: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+  },
+  {
+    name: "Chloe Bennett",
+    role: "Food Critic",
+    img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+  },
+  {
+    name: "Liam Martinez",
+    role: "Tech Columnist",
+    img: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+  },
 ];
+
 
 const About = () => {
   return (
@@ -107,46 +124,47 @@ const About = () => {
     </motion.div>
   ))}
 
-  <div className="max-w-6xl mx-auto px-6">
-    <motion.h2
-      className="text-4xl font-bold text-blue-900 mb-4"
-      initial={{ opacity: 0, y: -30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-    >
-      Meet Our Team
-    </motion.h2>
-    <motion.p
-      className="text-blue-700 max-w-2xl mx-auto mb-14"
-      initial={{ opacity: 0, y: -10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1 }}
-    >
-      Creative minds, passionate hearts. Together, we build stories worth sharing.
-    </motion.p>
+<div className="max-w-6xl mx-auto px-6">
+  <motion.h2
+    className="text-4xl font-bold text-blue-900 mb-4"
+    initial={{ opacity: 0, y: -30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8 }}
+  >
+    Meet Our Team
+  </motion.h2>
+  <motion.p
+    className="text-blue-700 max-w-2xl mx-auto mb-14"
+    initial={{ opacity: 0, y: -10 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 1 }}
+  >
+    Creative minds, passionate hearts. Together, we build stories worth sharing.
+  </motion.p>
 
-    <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-12">
-      {team.map((member, index) => (
-        <motion.div
-          key={index}
-          className="flex flex-col items-center group"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: index * 0.2 }}
-        >
-          <motion.img
-            src={`https://i.pravatar.cc/150?img=${index + 10}`}
-            alt={member.name}
-            className="w-24 h-24 rounded-full shadow-xl mb-4 transition-transform group-hover:scale-110"
-          />
-          <h4 className="font-semibold text-lg text-blue-800">{member.name}</h4>
-          <p className="text-sm text-blue-600 mt-1 group-hover:opacity-100 transition-opacity duration-300 opacity-80">
-            {member.role}
-          </p>
-        </motion.div>
-      ))}
-    </div>
+  <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-12">
+    {team.map((member, index) => (
+      <motion.div
+        key={index}
+        className="flex flex-col items-center group"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: index * 0.2 }}
+      >
+        <motion.img
+          src={member.img}
+          alt={member.name}
+          className="w-24 h-24 rounded-full shadow-xl mb-4 transition-transform group-hover:scale-110"
+        />
+        <h4 className="font-semibold text-lg text-blue-800">{member.name}</h4>
+        <p className="text-sm text-blue-600 mt-1 group-hover:opacity-100 transition-opacity duration-300 opacity-80">
+          {member.role}
+        </p>
+      </motion.div>
+    ))}
   </div>
+</div>
+
 </section>
 
       {/* Join Our Community */}

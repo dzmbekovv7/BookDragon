@@ -16,7 +16,7 @@ const AshleyArticlesPage = () => {
   useEffect(() => {
     const fetchArticles = async () => {
       const { data, error } = await supabase
-        .from('ashley_articles')
+        .from('bookmark_articles')
         .select('*')
         .order('published_date', { ascending: false })
 
@@ -30,7 +30,27 @@ const AshleyArticlesPage = () => {
 
     fetchArticles()
   }, [])
-
+  useEffect(() => {
+    const fetchTypes = async () => {
+      const { data, error } = await supabase
+        .from('bookmark_articles')
+        .select('type')         // получаем только поле `type`
+        .not('type', 'is', null) // исключаем пустые значения
+        .neq('type', '')         // исключаем пустые строки
+        .then(result => {
+          if (result.error) {
+            console.error('Ошибка:', result.error.message)
+          } else {
+            // извлекаем и фильтруем уникальные значения
+            const uniqueTypes = [...new Set(result.data.map(item => item.type))]
+            console.log('Уникальные type:', uniqueTypes)
+          }
+        })
+    }
+  
+    fetchTypes()
+  }, [])
+  
   const handleShowMore = () => {
     setVisibleCount(prev => prev + 9)
   }

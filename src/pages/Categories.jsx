@@ -41,7 +41,7 @@ const Categories = () => {
   useEffect(() => {
     const fetchArticles = async () => {
       const { data, error } = await supabase
-        .from('ashley_articles')
+        .from('bookmark_articles')
         .select('*')
         .order('published_date', { ascending: false })
         .limit(6);

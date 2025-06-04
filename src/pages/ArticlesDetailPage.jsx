@@ -20,7 +20,7 @@ const AshleyArticleDetailPage = () => {
 
   useEffect(() => {
     const fetchArticle = async () => {
-      const { data, error } = await supabase.from('ashley_articles').select('*');
+      const { data, error } = await supabase.from('bookmark_articles').select('*');
 
       if (!error && data) {
         const found = data.find((a) => slugify(a.title) === slug);
@@ -306,28 +306,28 @@ const AshleyArticleDetailPage = () => {
   </h2>
   <div className="flex flex-wrap justify-center gap-4">
     <Link
-      to="/type/Music%20and%20Music%20Culture"
+      to="/type/Literary%20Lists"
       className="px-6 py-3 bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 font-medium rounded-full hover:from-blue-200 hover:to-blue-300 transition-all duration-300 shadow-sm hover:shadow-md"
     >
-      Music and Music Culture
+      Literary Lists
     </Link>
     <Link
-      to="/type/60s%20Culture%20and%20Hippie%20Spirit"
+      to="/type/Book%20Reviews"
       className="px-6 py-3 bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 font-medium rounded-full hover:from-blue-200 hover:to-blue-300 transition-all duration-300 shadow-sm hover:shadow-md"
     >
-      60s Culture and Hippie Spirit
+      Book Reviews
     </Link>
     <Link
-      to="/type/Personal%20Experience%20and%20Thoughts"
+      to="/type/Book%20Lifestyle"
       className="px-6 py-3 bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 font-medium rounded-full hover:from-blue-200 hover:to-blue-300 transition-all duration-300 shadow-sm hover:shadow-md"
     >
-      Personal Experience and Thoughts
+     Book Lifestyle
     </Link>
     <Link
-      to="/type/Alternative%20Lifestyle"
+      to="/type/Feminism%20&%20Culture"
       className="px-6 py-3 bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 font-medium rounded-full hover:from-blue-200 hover:to-blue-300 transition-all duration-300 shadow-sm hover:shadow-md"
     >
-      Alternative Lifestyle
+      Feminism & Culture
     </Link>
   </div>
 </div>

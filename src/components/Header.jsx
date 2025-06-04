@@ -56,10 +56,10 @@ const Header = () => {
 
     {bookDropdownOpen && (
       <div className="absolute  left-0 mt-1 w-44 bg-white border rounded-lg shadow-xl py-2 z-40">
-        <Link      to="/type/60s%20Culture%20and%20Hippie%20Spirit" className="block text-gray-700 px-4 py-2 hover:bg-indigo-50">60s Culture and Hippie Spirit</Link>
-        <Link  to="/type/Personal%20Experience%20and%20Thoughts" className="block text-gray-700 px-4 py-2 hover:bg-indigo-50">Personal Experience and Thoughts</Link>
-        <Link       to="/type/Alternative%20Lifestyle"className="block text-gray-700 px-4 py-2 hover:bg-indigo-50">Alternative Lifestyle</Link>
-        <Link      to="/type/Music%20and%20Music%20Culture" className="block text-gray-700 px-4 py-2 hover:bg-indigo-50">Music and Music Culture</Link>
+        <Link        to="/type/Feminism%20&%20Culture" className="block text-gray-700 px-4 py-2 hover:bg-indigo-50">  Feminism & Culture</Link>
+        <Link      to="/type/Literary%20Lists" className="block text-gray-700 px-4 py-2 hover:bg-indigo-50">  Literary Lists</Link>
+        <Link    to="/type/Book%20Lifestyle"className="block text-gray-700 px-4 py-2 hover:bg-indigo-50">   Book Lifestyle</Link>
+        <Link       to="/type/Book%20Reviews" className="block text-gray-700 px-4 py-2 hover:bg-indigo-50">     Book Reviews</Link>
       </div>
     )}
   </div>
@@ -70,7 +70,12 @@ const Header = () => {
   >
     Testimonials
   </Link>
-
+  <Link
+    to="/privacy"
+    className="relative text-gray-700 font-medium transition hover:text-indigo-600 after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full"
+  >
+    Privacy
+  </Link>
   <Link
     to="/contact"
     className="relative text-gray-700 font-medium transition hover:text-indigo-600 after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full"
