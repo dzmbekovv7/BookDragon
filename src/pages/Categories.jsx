@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { supabase } from '../supabase';
 import { useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 const categories = [
   { name: 'Romantic', icon: <Heart className="w-8 h-8 text-pink-500" /> },
   { name: 'Mystery', icon: <Moon className="w-8 h-8 text-purple-600" /> },
@@ -109,26 +109,32 @@ const Categories = () => {
         ) : (
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {articles.map((article) => (
-              <div
-                key={article.id}
-                className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 overflow-hidden flex flex-col"
-              >
-                <img
-                  src={article.image}
-                  alt={article.title}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-5 flex flex-col flex-grow">
-                  <h2 className="text-xl font-semibold text-blue-800 mb-2">{article.title}</h2>
-                  <p className="text-gray-600 text-sm mb-3 line-clamp-3">{article.summary}</p>
-                  <div className="text-xs text-gray-500">
-                    🕒 {article.reading_time} min • 📅{' '}
-                    {new Date(article.published_date).toLocaleDateString()}
-                  </div>
-                </div>
-              </div>
+
+<Link
+to="/articles"
+key={article.id}
+className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 overflow-hidden flex flex-col"
+>
+<img
+  src={article.image}
+  alt={article.title}
+  className="w-full h-48 object-cover"
+/>
+<div className="p-5 flex flex-col flex-grow">
+  <h2 className="text-xl font-semibold text-blue-800 mb-2">{article.title}</h2>
+  <p className="text-gray-600 text-sm mb-3 line-clamp-3">{article.summary}</p>
+  <div className="text-xs text-gray-500">
+    🕒 {article.reading_time} min • 📅{' '}
+    {new Date(article.published_date).toLocaleDateString()}
+  </div>
+</div>
+</Link>
+
+
             ))}
+            
           </div>
+
         )}
 
         {/* Кнопка Смотреть больше */}
