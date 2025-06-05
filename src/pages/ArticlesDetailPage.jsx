@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../supabase';
 import Loading from '../components/Loading';
 import { MessageCircle, User, Clock } from 'lucide-react';
-
+import './Article.css'
 const AshleyArticleDetailPage = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
@@ -77,7 +77,34 @@ const AshleyArticleDetailPage = () => {
 
   if (loading) return <Loading />;
   if (!article) return <p>Article not found</p>;
-
+  function addClassToLinks(html) {
+    if (!html) return "";
+  
+    // Используем регулярку для добавления класса к каждому <a ...>
+    return html.replace(/<a /g, '<a class="custom-link" ');
+  }
+  
+  const customMarkdown = (content) => {
+    if (!content) return "";
+  
+    let html = content
+      .replace(/^# (.*$)/gm, '<h1>$1</h1>')
+      .replace(/^## (.*$)/gm, '<h2>$1</h2>')
+      .replace(/^### (.*$)/gm, '<h3>$1</h3>')
+      .replace(/\*\*(.*?)\*\*/g, '<strong style="font-size: 30px; font-weight: 700;">$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      .replace(
+        /\[(.*?)\]\((.*?)\)/g,
+        `<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>`
+      )
+      .replace(/<img>(.*?)<\/img>/g, '<img src="$1" style="width: 70%; height: 100%" loading="lazy" class="article-image-content" />')
+      .split('\n')
+      .map(line => line.trim() === '' ? '<br/>' : `<p>${line}</p>`)
+      .join('');
+  
+    // Добавляем класс ко всем ссылкам
+    return addClassToLinks(html);
+  };
   return (
     <div className="max-w-6xl mx-auto p-6 mt-10 flex flex-col lg:flex-row gap-10">
       {/* Main Content */}
@@ -161,10 +188,10 @@ const AshleyArticleDetailPage = () => {
             <span>•</span>
             <span>{article.reading_time} min read</span>
           </div>
-          <p className="text-lg text-gray-700 leading-relaxed whitespace-pre-line">
-            {article.content}
-          </p>
-
+          <div
+  className="text-gray-700 whitespace-pre-line"
+  dangerouslySetInnerHTML={{ __html: customMarkdown(article.content) }}
+/>
           {/* Comment Section */}
           <div className="mt-12">
             <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2 mb-6">
