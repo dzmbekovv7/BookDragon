@@ -21,7 +21,7 @@ const Loading = () => {
   }, [])
 
   return (
-    <div className=" flex flex-col items-center justify-center text-center px-4">
+    <div className=" flex flex-col h-[420px] items-center justify-center text-center px-4">
       <motion.div
         className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-6"
         initial={{ scale: 0.6 }}
