@@ -166,7 +166,7 @@ const AshleyArticlesPage = () => {
                   <h2 className="text-xl font-semibold text-blue-800 mb-2">{article.title}</h2>
                   <p className="text-gray-600 text-sm mb-3">{article.summary}</p>
                   <div className="text-xs text-gray-500 mb-2">
-                    🕒 {article.reading_time} min • 📅 {new Date(article.published_date).toLocaleDateString()}
+                    🕒 {article.reading_time} • 📅 {new Date(article.published_date).toLocaleDateString()}
                   </div>
                   <div className="flex items-center gap-2 mb-4">
                     <img src={article.avatar} alt={article.author} className="w-7 h-7 rounded-full" />

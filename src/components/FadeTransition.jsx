@@ -1,4 +1,3 @@
-// src/components/AnimatedPage.jsx
 import { motion } from 'framer-motion';
 
 const animation = {
