@@ -1,27 +1,10 @@
 import React, { useRef } from 'react';
 import BookCard from '../components/BookCard';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-
-const containerVariants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
 
 const Books = () => {
   const scrollRef = useRef(null);
-  const { ref: inViewRef, inView } = useInView({ triggerOnce: false, threshold: 0.2 });
 
-  // Функция, объединяющая два рефа
-  const setRefs = (node) => {
-    scrollRef.current = node; // для скролла
-    inViewRef(node); // для анимации
-  };
   const scroll = (direction) => {
     if (scrollRef.current) {
       const scrollAmount = direction === 'left' ? -300 : 300;
@@ -96,18 +79,14 @@ const Books = () => {
       </button>
 
       {/* Карусель */}
-      <motion.div
-  ref={setRefs}
-  variants={containerVariants}
-  initial="hidden"
-  animate={inView ? 'show' : 'hidden'}
-  className="flex overflow-x-auto no-scrollbar gap-6 scroll-smooth"
->
-  {books.map((book, idx) => (
-    <BookCard key={idx} idx={idx} {...book} />
-  ))}
-</motion.div>
-
+      <div
+        ref={scrollRef}
+        className="flex overflow-x-auto no-scrollbar gap-6 scroll-smooth"
+      >
+        {books.map((book, idx) => (
+          <BookCard key={idx} idx={idx} {...book} />
+        ))}
+      </div>
     </div>
   );
 };

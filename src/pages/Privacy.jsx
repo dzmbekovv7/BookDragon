@@ -1,15 +1,4 @@
-import { motion } from "framer-motion";
-import {
-  ShieldCheck,
-  UserCheck,
-  Database,
-  Lock,
-  AlarmClock,
-  ScrollText,
-  Globe,
-  BellRing,
-  Mail,
-} from "lucide-react";
+import { ShieldCheck, UserCheck, Database, Lock, AlarmClock, ScrollText, Globe, BellRing, Mail } from "lucide-react";
 
 export default function PrivacyPolicy() {
   const sections = [
@@ -66,41 +55,20 @@ export default function PrivacyPolicy() {
   ];
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-indigo-900  py-20 px-4 flex justify-center items-center">
+    <section className="min-h-screen bg-gradient-to-br from-indigo-900 py-20 px-4 flex justify-center items-center">
       <div className="max-w-4xl bg-blue-950/80 rounded-3xl shadow-2xl p-10 w-full">
-        <motion.h1
-          className="text-4xl font-bold text-center text-white mb-4"
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          Privacy Policy
-        </motion.h1>
-
-        <motion.p
-          className="text-center text-blue-200 mb-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-        >
-          Last Updated: May 2025
-        </motion.p>
+        <h1 className="text-4xl font-bold text-center text-white mb-4">Privacy Policy</h1>
+        <p className="text-center text-blue-200 mb-10">Last Updated: May 2025</p>
 
         <div className="space-y-8 text-blue-100">
           {sections.map((section, idx) => (
-            <motion.div
-              key={idx}
-              className="bg-blue-900/50 p-6 rounded-xl hover:bg-blue-900 transition"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: idx * 0.1 }}
-            >
+            <div key={idx} className="bg-blue-900/50 p-6 rounded-xl hover:bg-blue-900 transition">
               <div className="flex items-center mb-2">
                 {section.icon}
                 <h2 className="text-xl font-semibold">{section.title}</h2>
               </div>
               <p className="whitespace-pre-line text-blue-100">{section.text}</p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

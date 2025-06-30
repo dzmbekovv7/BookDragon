@@ -16,45 +16,7 @@ import AnimatedPage from './components/FadeTransition';
 import Testimonials from './pages/Reviews';
 import CategoryArticlesPage from './pages/CategoryArticlesPage'
 
-const loadingMessages = [
-  "Just a second... your stories are being written.",
-  "Turning the pages of something magical...",
-  "Hold tight, the bookshelf is coming together.",
-  "A story for every soul... Almost there!",
-  "Summoning your next favorite book..."
-];
-
 function App() {
-  const location = useLocation();
-  const [isLoading, setIsLoading] = useState(true);
-  const [loadingText, setLoadingText] = useState('');
-
-  useEffect(() => {
-    const message = loadingMessages[Math.floor(Math.random() * loadingMessages.length)];
-    setLoadingText(message);
-
-    const timer = setTimeout(() => setIsLoading(false), 3500);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return (
-      <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-pink-100 via-blue-100 to-blue-100 text-center px-4">
-        {/* Анимация — красивая анимированная книжка */}
-        <motion.img
-          src="https://cdn-icons-png.flaticon.com/512/3377/3377731.png"
-          alt="Loading book"
-          className="w-24 h-24 mb-6"
-          animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
-
-        <h2 className="text-xl sm:text-2xl md:text-3xl text-gray-700 font-semibold max-w-md">
-          {loadingText}
-        </h2>
-      </div>
-    );
-  }
 
   return (
     <>

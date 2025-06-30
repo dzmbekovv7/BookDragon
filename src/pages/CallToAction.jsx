@@ -5,9 +5,6 @@ const CallToAction = () => (
   <section className="bg-gradient-to-r from-blue-700 to-purple-700 text-white py-20 px-6 text-center">
     <motion.h3
       className="text-4xl font-bold mb-6"
-      initial={{ scale: 0.8, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.6 }}
     >
       Ready to start your adventure?
     </motion.h3>
